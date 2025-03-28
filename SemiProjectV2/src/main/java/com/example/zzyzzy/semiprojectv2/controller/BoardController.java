@@ -3,6 +3,7 @@ package com.example.zzyzzy.semiprojectv2.controller;
 import com.example.zzyzzy.semiprojectv2.domain.Board;
 import com.example.zzyzzy.semiprojectv2.domain.BoardDTO;
 import com.example.zzyzzy.semiprojectv2.domain.BoardListDTO;
+import com.example.zzyzzy.semiprojectv2.domain.BoardReplyDTO;
 import com.example.zzyzzy.semiprojectv2.repository.BoardRepository;
 import com.example.zzyzzy.semiprojectv2.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +57,13 @@ public class BoardController {
         BoardListDTO boardListDTO = boardService.findBoard(cpg, findtype, findkey);
 
         return new ResponseEntity<>(boardListDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/view/{bno}")
+    public ResponseEntity<?> view(@PathVariable Long bno) {
+        BoardReplyDTO boardreply = boardService.readOneBoardReply(bno);
+
+        return new ResponseEntity<>(boardreply, HttpStatus.OK);
     }
 
     @GetMapping("/test/{cpg}")
