@@ -2,6 +2,7 @@ package com.example.zzyzzy.semiprojectv2.service;
 
 import com.example.zzyzzy.semiprojectv2.domain.*;
 import com.example.zzyzzy.semiprojectv2.repository.BoardRepository;
+import com.example.zzyzzy.semiprojectv2.repository.ReplyRepository;
 import com.example.zzyzzy.semiprojectv2.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import java.util.List;
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepository;
+    private final ReplyRepository replyRepository;
     @Value("${board.pagesize}") private int pageSize;
 
     @Override
@@ -74,8 +76,9 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public BoardReplyDTO readOneBoardReply(Long bno) {
         Board board = boardRepository.findByBno(bno);
+        List<Reply> replies = replyRepository.findByPnoOrderByRef(bno);
 
-        return new BoardReplyDTO(board, null);
+        return new BoardReplyDTO(board, replies);
     }
 
 }
