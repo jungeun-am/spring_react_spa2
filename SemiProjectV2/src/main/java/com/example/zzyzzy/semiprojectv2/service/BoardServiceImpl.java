@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -79,9 +80,11 @@ public class BoardServiceImpl implements BoardService {
     public BoardReplyDTO readOneBoardReply(Long bno) {
         boardRepository.updateViews(bno);
         Board board = boardRepository.findByBno(bno);
-        List<Reply> replies = replyRepository.findByPnoOrderByRef(bno);
+        //List<Reply> replies = replyRepository.findByPnoOrderByRef(bno);
 
-        return new BoardReplyDTO(board, replies);
+        //return new BoardReplyDTO(board, replies);
+        return new BoardReplyDTO(board, board.getReplies());
     }
+
 
 }
