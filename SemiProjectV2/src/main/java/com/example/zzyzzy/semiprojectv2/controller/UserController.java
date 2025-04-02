@@ -18,7 +18,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/api/member")
 @RequiredArgsConstructor
-@CrossOrigin(origins="http://localhost:5173")
+@CrossOrigin(origins= {"http://localhost:5173", "http://127.0.0.1:3000"})
 public class UserController {
 
 
