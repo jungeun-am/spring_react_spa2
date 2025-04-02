@@ -67,7 +67,7 @@ public class AuthController {
 
             // 생성한 토큰을 JSON 형식으로 만듦
             Map<String, String> tokens = Map.of(
-                    "accessToKen", jwt
+                    "accessToken", jwt
             );
             response = ResponseEntity.ok().body(tokens);
         } catch (BadCredentialsException e) {
