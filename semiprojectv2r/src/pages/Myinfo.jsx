@@ -7,6 +7,7 @@ import React, {useEffect, useState} from "react";
 const Myinfo = () => {
 
     const [userInfo, setUserInfo] = useState({});
+    const [loading, setLoading] = useState(true);
     const fetchURL = 'http://localhost:8080/api/member/myinfo';
 
     useEffect(() => {
@@ -26,6 +27,7 @@ const Myinfo = () => {
             .then(data => {
                 console.log(data);
                 setUserInfo(data);
+                setLoading(false);
             })
             .catch(err => {
                 console.log('오류발생!! ', err);
@@ -33,7 +35,12 @@ const Myinfo = () => {
     });
 },[]);
 
-
+    // 조건부 렌더링
+    if(loading) {
+        return (
+            <></>
+        );
+    }
     return (
         <main id="content">
             <h2>회원정보</h2>
