@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 // 교차출처 리소스 공유 CORS
-@CrossOrigin(origins="http://localhost:5173")
+@CrossOrigin(origins= {"http://localhost:5173","http://127.0.0.1:3000"})
 @Slf4j
 @RestController
 @RequiredArgsConstructor
